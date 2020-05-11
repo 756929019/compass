@@ -77,28 +77,7 @@ namespace compass
                 Double i_radian = (i * Math.PI) / 180;
 
                 #region 大刻度
-                Rectangle majortickrect = new Rectangle();
-                majortickrect.Height = MajorTickSize.Height;
-                majortickrect.Width = MajorTickSize.Width;
-                majortickrect.Fill = new SolidColorBrush(MajorTickColor);
-                Point p = new Point(0.5, 0.5);
-                majortickrect.RenderTransformOrigin = p;
-                majortickrect.HorizontalAlignment = HorizontalAlignment.Center;
-                majortickrect.VerticalAlignment = VerticalAlignment.Center;
-
-                TransformGroup majortickgp = new TransformGroup();
-                RotateTransform majortickrt = new RotateTransform();
-                majortickrt.Angle = i;
-                majortickgp.Children.Add(majortickrt);
-                TranslateTransform majorticktt = new TranslateTransform();
-
-                //在这里画点中心为（0,0）
-                majorticktt.X = (int)((ScaleRadius) * Math.Cos(i_radian));
-                majorticktt.Y = (int)((ScaleRadius) * Math.Sin(i_radian));
-
-
-                majortickgp.Children.Add(majorticktt);
-                majortickrect.RenderTransform = majortickgp;
+                Rectangle majortickrect = DrawRectangle(i, ScaleRadius, Colors.LightGray, new Size(10, 3));
                 rootGrid.Children.Add(majortickrect);
                 #endregion
 
@@ -117,7 +96,7 @@ namespace compass
                 {
                     break;
                 }
-                TextBlock tb = DrawText(i + 90, ScaleLabelRadius, i_radian, text, Colors.LightGray, new Size(40, 20), 8);
+                TextBlock tb = DrawText(i, ScaleLabelRadius, text, Colors.LightGray, new Size(40, 20), 8);
                 rootGrid.Children.Add(tb);
 
                 #endregion
@@ -129,29 +108,7 @@ namespace compass
                     //绘制小刻度
                     for (Double mi = i + onedegree; mi < (i + majorTickUnitAngle); mi = mi + onedegree)
                     {
-                        Rectangle mr = new Rectangle();
-                        mr.Height = MinorTickSize.Height;
-                        mr.Width = MinorTickSize.Width;
-                        mr.Fill = new SolidColorBrush(MinorTickColor);
-                        mr.HorizontalAlignment = HorizontalAlignment.Center;
-                        mr.VerticalAlignment = VerticalAlignment.Center;
-                        Point p1 = new Point(0.5, 0.5);
-                        mr.RenderTransformOrigin = p1;
-
-                        TransformGroup minortickgp = new TransformGroup();
-                        RotateTransform minortickrt = new RotateTransform();
-                        minortickrt.Angle = mi;
-                        minortickgp.Children.Add(minortickrt);
-                        TranslateTransform minorticktt = new TranslateTransform();
-
-                        //计算角度
-                        Double mi_radian = (mi * Math.PI) / 180;
-                        //刻度点
-                        minorticktt.X = (int)((ScaleRadius) * Math.Cos(mi_radian));
-                        minorticktt.Y = (int)((ScaleRadius) * Math.Sin(mi_radian));
-
-                        minortickgp.Children.Add(minorticktt);
-                        mr.RenderTransform = minortickgp;
+                        Rectangle mr = DrawRectangle(mi, ScaleRadius, Colors.LightGray, new Size(3, 1));
                         rootGrid.Children.Add(mr);
                     }
                 }
@@ -187,7 +144,7 @@ namespace compass
                 {
                     break;
                 }
-                TextBlock tb = DrawText(i + 90, ScaleLabelRadius_tgdz, i_radian, text, Colors.LightGray, new Size(40, 20), 8);
+                TextBlock tb = DrawText(i, ScaleLabelRadius_tgdz, text, Colors.LightGray, new Size(40, 20), 8);
                 rootGrid.Children.Add(tb);
             }
 
@@ -211,7 +168,7 @@ namespace compass
             for (Double i = ScaleStartAngle; i <= (ScaleStartAngle + ScaleSweepAngle); i = i + majorTickUnitAngle_bg)
             {
                 Double i_radian = (i * Math.PI) / 180;
-                Double i_radian_ta = ((i + 8) * Math.PI) / 180;
+                Double i_radian_ta = ((i + 5) * Math.PI) / 180;
                 string text = "";
                 string text_tag = "";
                 if (Math.Round(minvalue_bg, ScaleValuePrecision) <= Math.Round(MaxValue_bg, ScaleValuePrecision))
@@ -228,8 +185,8 @@ namespace compass
                 {
                     break;
                 }
-                TextBlock tb = DrawText(i + 90, ScaleLabelRadius_bg, i_radian, text, Colors.Red, new Size(40, 20), 12);
-                TextBlock tb_tag = DrawText(i + 90, ScaleLabelRadius_bg, i_radian_ta, text_tag, Colors.LightGray, new Size(40, 20), 8);
+                TextBlock tb = DrawText(i, ScaleLabelRadius_bg, text, Colors.Red, new Size(40, 20), 12);
+                TextBlock tb_tag = DrawText(i + 8, ScaleLabelRadius_bg - 5, text_tag, Colors.LightGray, new Size(40, 20), 8);
                 rootGrid.Children.Add(tb);
                 rootGrid.Children.Add(tb_tag);
             }
@@ -237,10 +194,39 @@ namespace compass
             #endregion
         }
 
-        TextBlock DrawText(double angle,double scaleLabelRadius,double radian, string text,Color color,Size labelSize,double fontSize) {
+        Rectangle DrawRectangle(double angle, double scaleLabelRadius, Color color, Size tickSize)
+        {
+            // 计算角度
+            double radian = (angle * Math.PI) / 180;
+            Rectangle mr = new Rectangle();
+            mr.Height = tickSize.Height;
+            mr.Width = tickSize.Width;
+            mr.Fill = new SolidColorBrush(color);
+            mr.HorizontalAlignment = HorizontalAlignment.Center;
+            mr.VerticalAlignment = VerticalAlignment.Center;
+            Point p1 = new Point(0.5, 0.5);
+            mr.RenderTransformOrigin = p1;
+
+            TransformGroup minortickgp = new TransformGroup();
+            RotateTransform minortickrt = new RotateTransform();
+            minortickrt.Angle = angle;
+            minortickgp.Children.Add(minortickrt);
+            TranslateTransform minorticktt = new TranslateTransform();
+
+            //刻度点
+            minorticktt.X = (int)((scaleLabelRadius) * Math.Cos(radian));
+            minorticktt.Y = (int)((scaleLabelRadius) * Math.Sin(radian));
+
+            minortickgp.Children.Add(minorticktt);
+            mr.RenderTransform = minortickgp;
+            return mr;
+        }
+
+        TextBlock DrawText(double angle,double scaleLabelRadius,string text,Color color,Size labelSize,double fontSize) {
+            double radian = (angle * Math.PI) / 180;
             TransformGroup majorscalevaluegp = new TransformGroup();
             RotateTransform majorscalevaluert = new RotateTransform();
-            majorscalevaluert.Angle = angle;
+            majorscalevaluert.Angle = angle + 90;
             majorscalevaluegp.Children.Add(majorscalevaluert);
             TranslateTransform majorscalevaluett = new TranslateTransform();
             //在这里画点中心为（0,0）
