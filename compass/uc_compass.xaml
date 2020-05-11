@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="compass.uc_compass"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:compass"
+             xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
+             mc:Ignorable="d" 
+             d:DesignHeight="860" d:DesignWidth="860" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Storyboard x:Key="Run" x:Name="xRun" Timeline.DesiredFrameRate="120">
+
+            <!--<DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="Ellipse8">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:30" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>-->
+
+            <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:35" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+           
+
+            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Bd_Bg">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:2" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>-->
+            <!--<DoubleAnimationUsingKeyFrames  RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.Effect).(ee:PixelateEffect.Pixelation)" Storyboard.TargetName="Bd_Bg">
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.9"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="-2"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="-2"/>
+            </DoubleAnimationUsingKeyFrames>-->
+
+            <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="taiji">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:15" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Run}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid Height="860" Width="860" ClipToBounds="True">
+        <Grid Height="800" Width="800">
+            <Border Width="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Offset="0.4"/>
+                        <GradientStop Offset="0.6"/>
+                        <GradientStop Color="#7FFFFFFF" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Height="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Offset="0.4"/>
+                        <GradientStop Offset="0.6"/>
+                        <GradientStop Color="#7FFFFFFF" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <!--内部太极图-->
+            <Border  x:Name="Bd_Bg" >
+                <Grid Name="textBlock"  IsHitTestVisible="True" Height="200" Width="200">
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="20" Direction="0" Color="Black" ShadowDepth="0"/>
+                    </Grid.Effect>
+                    <Viewbox>
+                    <Border x:Name="taiji" Margin="20" Width="400" Height="400" CornerRadius="400" RenderTransformOrigin="0.5,0.5">
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="0" BlurRadius="40" Color="White" Opacity="0.5"></DropShadowEffect>
+                        </Border.Effect>
+                        <Grid>
+                            <!--左边黑半圆-->
+                            <Border Width="200" Height="400" CornerRadius="200,0,0,200" Background="Black" HorizontalAlignment="Left"></Border>
+                            <!--右边白半圆-->
+                            <Border Width="200" Height="400" CornerRadius="0,200,200,0" Background="White" HorizontalAlignment="Right"></Border>
+                            <!--黑色小半圆-->
+                            <Border Width="100" Height="200" CornerRadius="0,200,200,0" Background="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="198,0,0,0"></Border>
+                            <!--白色小半圆-->
+                            <Border Width="100" Height="200" CornerRadius="200,0,0,200" Background="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="102,0,0,0"></Border>
+                            <!--白色小正圆-->
+                            <Border Width="50" Height="50" CornerRadius="50" Background="White" VerticalAlignment="Top" Margin="0,75,0,0"></Border>
+                            <!--黑色小正圆-->
+                            <Border Width="50" Height="50" CornerRadius="50" Background="Black" VerticalAlignment="Bottom" Margin="0,0,0,75"></Border>
+                        </Grid>
+                    </Border>
+                    </Viewbox>
+                </Grid>
+            </Border>
+            <Ellipse x:Name="Ellipse001" Margin="280" StrokeThickness="2" Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse002" Margin="230" StrokeThickness="2" Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse8" Margin="80" StrokeThickness="12" Stroke="White"  RenderTransformOrigin="0.5,0.5" >
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+                <Ellipse.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="35" Opacity="0.915"/>
+                </Ellipse.Effect>
+            </Ellipse>
+            <Canvas x:Name="image" Margin="120" RenderTransformOrigin="0.5,0.5">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+            </Canvas>
+        </Grid>
+        <Grid Width="800" Height="800" x:Name="rootGrid"></Grid>
+    </Grid>
+</UserControl>

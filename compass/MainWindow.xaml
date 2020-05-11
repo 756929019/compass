@@ -1,0 +1,40 @@
+﻿<Window x:Class="compass.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:compass"
+        xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="MainWindow" Height="960" Width="1024" FontFamily="Microsoft YaHei UI">
+    <Window.Resources>
+
+        <Storyboard x:Key="Abort">
+
+        </Storyboard>
+
+
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Abort}"/>
+        </EventTrigger>
+
+    </Window.Triggers>
+    <Window.Background>
+        <ImageBrush x:Name="bgImg" ImageSource="img/bg6.jpg"></ImageBrush>
+    </Window.Background>
+    <Grid x:Name="BaseGrid" Margin="2">
+        <local:uc_3d_compass  x:Name="Bd_Bg" Margin="0,20,0,0"/>
+        <Path   x:Name="TopPath" Stretch="Fill"  Height="35" VerticalAlignment="Bottom" Data="M490.46301,42.243993 L499.175,29.981996 M498.75003,30.198997 L608.99902,30.198997 M586.25301,30.198993 L602.606,13.843997 M490.84901,42.208993 L482.42902,30.342996 M372.74703,30.561997 L482.83802,30.561997 M373.09201,30.706993 L343.23902,0.85602486 M397.36801,30.582993 L380.29502,13.512011 M608.64101,30.352993 L638.49198,0.50000032 M638.13001,0.65398833 L981.22208,0.65398833 M0.5000127,1.0059883 L343.59208,1.0059883 M601.91205,14.141991 L962.18605,14.141991 M20.720052,13.811991 L380.99405,13.811991" StrokeThickness="2"   >
+            <Path.Stroke>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FFFFFFFF" Offset="0.49"/>
+                    <GradientStop Color="#FFFFFFFF" Offset="0.565"/>
+                    <GradientStop Color="#336E551C"/>
+                    <GradientStop Color="#336E551C" Offset="1"/>
+                </LinearGradientBrush>
+            </Path.Stroke>
+        </Path>
+    </Grid>
+</Window>
