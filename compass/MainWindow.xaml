@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:compass"
         xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowState="Maximized"
-        Title="MainWindow" Height="960" Width="1024" FontFamily="Microsoft YaHei UI">
+        Title="MainWindow" Height="1024" Width="1024" FontFamily="Microsoft YaHei UI">
     <Window.Resources>
 
         <Storyboard x:Key="Abort">

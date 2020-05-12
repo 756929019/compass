@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:compass"
              xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
              mc:Ignorable="d" 
-             d:DesignHeight="860" d:DesignWidth="860" Loaded="UserControl_Loaded">
+             d:DesignHeight="1060" d:DesignWidth="1060" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="Run" x:Name="xRun" Timeline.DesiredFrameRate="120">
 
@@ -15,7 +15,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:30" Value="360"/>
             </DoubleAnimationUsingKeyFrames>-->
 
-            <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="image">
+            <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="ostentatiousGrid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:35" Value="360"/>
             </DoubleAnimationUsingKeyFrames>
@@ -42,9 +42,9 @@
             <BeginStoryboard Storyboard="{StaticResource Run}"/>
         </EventTrigger>
     </UserControl.Triggers>
-    <Grid Height="860" Width="860" ClipToBounds="True">
-        <Grid Height="800" Width="800">
-            <Border Width="1">
+    <Grid Height="1060" Width="1060" ClipToBounds="True">
+        <Grid Height="1060" Width="1060" ClipToBounds="True">
+            <!--<Border Width="1">
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Offset="0.4"/>
@@ -61,10 +61,10 @@
                         <GradientStop Color="#7FFFFFFF" Offset="0.5"/>
                     </LinearGradientBrush>
                 </Border.Background>
-            </Border>
+            </Border>-->
             <!--内部太极图-->
             <Border  x:Name="Bd_Bg" >
-                <Grid Name="textBlock"  IsHitTestVisible="True" Height="200" Width="200">
+                <Grid Name="textBlock"  IsHitTestVisible="True" Height="140" Width="140">
                     <Grid.Effect>
                         <DropShadowEffect BlurRadius="20" Direction="0" Color="Black" ShadowDepth="0"/>
                     </Grid.Effect>
@@ -99,11 +99,34 @@
                     </Viewbox>
                 </Grid>
             </Border>
-            <Ellipse x:Name="Ellipse001" Margin="280" StrokeThickness="2" Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            <Ellipse x:Name="Ellipse001" Margin="450" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
             </Ellipse>
-            <Ellipse x:Name="Ellipse002" Margin="230" StrokeThickness="2" Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            <Ellipse x:Name="Ellipse002" Margin="415" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
             </Ellipse>
-            <Ellipse x:Name="Ellipse8" Margin="80" StrokeThickness="12" Stroke="White"  RenderTransformOrigin="0.5,0.5" >
+            <Ellipse x:Name="Ellipse003" Margin="380" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse004" Margin="360" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse005" Margin="340" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse006" Margin="310" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+
+            <Ellipse x:Name="Ellipse007" Margin="285" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse008" Margin="255" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse009" Margin="230" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse010" Margin="210" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse011" Margin="190" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse012" Margin="155" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse013" Margin="135" StrokeThickness="1" Stroke="LightGray" RenderTransformOrigin="0.5,0.5" >
+            </Ellipse>
+            <Ellipse x:Name="Ellipse8" Margin="0" StrokeThickness="28" Stroke="LightGray"  RenderTransformOrigin="0.5,0.5" >
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -116,17 +139,17 @@
                     <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="35" Opacity="0.915"/>
                 </Ellipse.Effect>
             </Ellipse>
-            <Canvas x:Name="image" Margin="120" RenderTransformOrigin="0.5,0.5">
-                <Canvas.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Canvas.RenderTransform>
-            </Canvas>
         </Grid>
-        <Grid Width="800" Height="800" x:Name="rootGrid"></Grid>
+        <Grid Width="1060" Height="1060" x:Name="rootGrid"></Grid>
+        <Grid Width="1060" Height="1060" x:Name="ostentatiousGrid"  Margin="0" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+        </Grid>
     </Grid>
 </UserControl>

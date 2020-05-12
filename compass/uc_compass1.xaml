@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:compass"
              xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
              mc:Ignorable="d" 
-             d:DesignHeight="860" d:DesignWidth="860">
+             d:DesignHeight="1060" d:DesignWidth="1060">
     <UserControl.Resources>
         <Storyboard x:Key="Run" x:Name="xRun" Timeline.DesiredFrameRate="120">
 
@@ -65,15 +65,15 @@
             <BeginStoryboard Storyboard="{StaticResource Run}"/>
         </EventTrigger>
     </UserControl.Triggers>
-    <Grid Height="860" Width="860" ClipToBounds="True">
-        <Grid Height="800" Width="800">
+    <Grid Height="1060" Width="1060" ClipToBounds="True">
+        <Grid Height="1060" Width="1060">
             <!--八卦图-->
-            <Ellipse  Margin="20" StrokeThickness="30"  Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            <Ellipse  Margin="50" StrokeThickness="30"  Stroke="White" RenderTransformOrigin="0.5,0.5" >
                 <Ellipse.Effect>
                     <BlurEffect Radius="50"/>
                 </Ellipse.Effect>
             </Ellipse>
-            <Ellipse Margin="10" x:Name="Ellipse1" StrokeThickness="2"  StrokeDashArray="1 5" Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            <Ellipse Margin="40" x:Name="Ellipse1" StrokeThickness="2"  StrokeDashArray="1 5" Stroke="White" RenderTransformOrigin="0.5,0.5" >
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -86,7 +86,7 @@
                     <DropShadowEffect BlurRadius="15" ShadowDepth="4" Color="Black"/>
                 </Ellipse.Effect>
             </Ellipse>
-            <Ellipse x:Name="Ellipse2"  Margin="30"  StrokeThickness="2" Stroke="White"  RenderTransformOrigin="0.5,0.5"  >
+            <Ellipse x:Name="Ellipse2"  Margin="60"  StrokeThickness="2" Stroke="White"  RenderTransformOrigin="0.5,0.5"  >
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -96,7 +96,7 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Ellipse x:Name="Ellipse3" Margin="23" StrokeThickness="18"  StrokeDashArray="4.5 5"  RenderTransformOrigin="0.5,0.5" StrokeDashCap="Triangle"  >
+            <Ellipse x:Name="Ellipse3" Margin="53" StrokeThickness="18"  StrokeDashArray="4.5 5.1"  RenderTransformOrigin="0.5,0.5" >
                 <Ellipse.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
                 </Ellipse.Effect>
@@ -115,7 +115,7 @@
                     </RadialGradientBrush>
                 </Ellipse.Stroke>
             </Ellipse>
-            <Ellipse x:Name="Ellipse4" Margin="50" StrokeThickness="2"  StrokeDashArray="1 5" Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            <Ellipse x:Name="Ellipse4" Margin="80" StrokeThickness="2"  StrokeDashArray="1 5" Stroke="White" RenderTransformOrigin="0.5,0.5" >
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -125,7 +125,7 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Ellipse x:Name="Ellipse5" Margin="60" StrokeThickness="4"   Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            <Ellipse x:Name="Ellipse5" Margin="90" StrokeThickness="4"   Stroke="White" RenderTransformOrigin="0.5,0.5" >
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -135,7 +135,7 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Ellipse x:Name="Ellipse6" Margin="63" StrokeThickness="5"  StrokeDashArray="0.3 1" Stroke="White" RenderTransformOrigin="0.5,0.5">
+            <Ellipse x:Name="Ellipse6" Margin="93" StrokeThickness="5"  StrokeDashArray="0.3 1" Stroke="White" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -145,7 +145,7 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Ellipse x:Name="Ellipse7" Margin="64" StrokeThickness="15"  StrokeDashArray="0.1 2" Stroke="White" RenderTransformOrigin="0.5,0.5" >
+            <Ellipse x:Name="Ellipse7" Margin="94" StrokeThickness="15"  StrokeDashArray="0.1 2" Stroke="White" RenderTransformOrigin="0.5,0.5" >
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -156,7 +156,7 @@
                 </Ellipse.RenderTransform>
             </Ellipse>
 
-            <Ellipse x:Name="Ellipse9"  Margin="100" StrokeThickness="1" StrokeDashArray="2 16" Stroke="White" RenderTransformOrigin="0.5,0.5"  >
+            <Ellipse x:Name="Ellipse9"  Margin="130" StrokeThickness="1" StrokeDashArray="2 16" Stroke="White" RenderTransformOrigin="0.5,0.5"  >
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
