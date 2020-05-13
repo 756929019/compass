@@ -29,7 +29,9 @@ namespace compass
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             DrawBg();
-            DrawScale();
+            DrawScale1();
+            DrawScale2();
+            DrawScale3();
         }
 
         void DrawBg()
@@ -45,7 +47,7 @@ namespace compass
         /// <summary>
         /// 画刻度
         /// </summary>
-        void DrawScale()
+        void DrawScale1()
         {
             // rootGrid.Children.Clear();
 
@@ -212,11 +214,22 @@ namespace compass
             string[] bg2 = new string[] { "乾", "", "艮", "", "甲癸", "", "艮", "", "巽", "", "丙乙", "", "巽", "", "坤", "", "庚丁", "", "坤", "", "乾", "", "壬辛", "" };
             string[] bg3 = new string[] { "文", "破", "破", "武", "贪", "文", "禄", "廉", "弼", "破", "巨", "午", "贪", "文", "武", "廉", "辅", "破", "廉", "武", "巨", "文", "禄", "廉" };
 
+            string[] bg4 = new string[] { "坤", "申", "庚", "巳", "丙", "午", "丁", "戌", "乾", "酉", "辛", "丑", "艮", "寅", "甲", "亥", "壬", "子", "癸", "辰", "巽", "卯", "乙", "未" };
+            string[] bg5 = new string[] { "壬", "子", "癸", "丑R", "艮R", "寅R", "甲R", "卯", "乙", "辰R", "巽R", "巳", "丙", "午", "丁", "未R", "坤R", "申R", "庚R", "酉", "辛", "戌R", "乾R", "亥" };
+            string[] bg6 = new string[] { "大雪", "冬至", "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪" };
+
             double MajorDivisionsCount_tgdz = 24;
             double MaxValue_tgdz = 24;
             double ScaleLabelRadius_1 = Ellipse001.ActualWidth / 2 + 55;
             double ScaleLabelRadius_2 = ScaleLabelRadius_1 + 28;
             double ScaleLabelRadius_3 = ScaleLabelRadius_2 + 20;
+
+            double ScaleLabelRadius_4 = ScaleLabelRadius_3 + 50;
+            double ScaleLabelRadius_5 = ScaleLabelRadius_4 + 25;
+            double ScaleLabelRadius_6 = ScaleLabelRadius_5 + 30;
+
+            double ScaleLabelRadius_wc_bg = Ellipse006.ActualWidth / 2 + 40;
+
             //刻度角度
             Double majorTickUnitAngle_tgdz = ScaleSweepAngle / MajorDivisionsCount_tgdz;
 
@@ -230,6 +243,9 @@ namespace compass
                 string text1 = "";
                 string text2 = "";
                 string text3 = "";
+                string text4 = "";
+                string text5 = "";
+                string text6 = "";
                 if (Math.Round(minvalue_tgdz, ScaleValuePrecision) <= Math.Round(MaxValue_tgdz, ScaleValuePrecision))
                 {
                     minvalue_tgdz = Math.Round(minvalue_tgdz, ScaleValuePrecision);
@@ -238,6 +254,9 @@ namespace compass
                         text1 = bg1[int.Parse((minvalue_tgdz).ToString())];
                         text2 = bg2[int.Parse((minvalue_tgdz).ToString())];
                         text3 = bg3[int.Parse((minvalue_tgdz).ToString())];
+                        text4 = bg4[int.Parse((minvalue_tgdz).ToString())];
+                        text5 = bg5[int.Parse((minvalue_tgdz).ToString())];
+                        text6 = bg6[int.Parse((minvalue_tgdz).ToString())];
                     }
                     minvalue_tgdz = minvalue_tgdz + majorTicksUnitValue_tgdz;
                 }
@@ -250,12 +269,33 @@ namespace compass
                     text1 = text1.Replace("R", "");
                     color1 = Colors.Red;
                 }
+                Color color2 = Colors.LightGray;
+                if (text5.IndexOf("R") > -1)
+                {
+                    text5 = text5.Replace("R", "");
+                    color2 = Colors.Red;
+                }
+
                 TextBlock tb1 = DrawText(i, ScaleLabelRadius_1, text1, color1, new Size(40, 20), 18, true);
                 rootGrid.Children.Add(tb1);
                 TextBlock tb2 = DrawText(i, ScaleLabelRadius_2, text2, Colors.LightGray, new Size(40, 20), 12);
                 rootGrid.Children.Add(tb2);
                 TextBlock tb3 = DrawText(i, ScaleLabelRadius_3, text3, Colors.LightGray, new Size(40, 20), 12);
                 rootGrid.Children.Add(tb3);
+
+                double angle = i + (360 / 48);
+
+                TextBlock tb4 = DrawText(angle, ScaleLabelRadius_4, text4, Colors.LightGray, new Size(40, 20), 12, true);
+                rootGrid.Children.Add(tb4);
+                TextBlock tb5 = DrawText(angle, ScaleLabelRadius_5, text5, color2, new Size(40, 20), 18, true);
+                rootGrid.Children.Add(tb5);
+                TextBlock tb6 = DrawText(angle, ScaleLabelRadius_6, text6, Colors.LightGray, new Size(40, 20), 12);
+                rootGrid.Children.Add(tb6);
+
+                #region 外层刻度
+                Rectangle majortickrect = DrawRectangle(i, ScaleLabelRadius_wc_bg, Colors.LightGray, new Size(80, 1));
+                rootGrid.Children.Add(majortickrect);
+                #endregion
             }
 
             #endregion
@@ -293,6 +333,125 @@ namespace compass
                 TextBlock tb = DrawText(i, ScaleLabelRadius_Ostentatious, text, Colors.Red, new Size(20, 20), 20);
                 ostentatiousGrid.Children.Add(tb);
             }
+            #endregion
+        }
+
+        /// <summary>
+        /// 画刻度
+        /// </summary>
+        void DrawScale2()
+        {
+            double ScaleStartAngle = 90;
+            double ScaleSweepAngle = 360;
+            double MinValue = 0;
+            int ScaleValuePrecision = 0;
+
+            #region xxx
+            double ScaleStartAngle_tmp = 90 - (360 / 144) * 6; // 线的起始位置
+            string[] bg1 = new string[] { "", "甲子", "丙子", "戊子", "庚子", "壬子", "", "乙丑", "丁丑", "己丑", "辛丑", "癸丑", "", "丙寅", "戊寅", "庚寅", "壬寅", "甲寅", "", "丁卯", "己卯", "辛卯", "癸卯", "乙卯", "", "戊辰", "庚辰", "壬辰", "甲辰", "丙辰", "", "己巳", "辛巳", "癸巳", "乙巳", "丁巳", "", "庚午", "壬午", "甲午", "丙午", "戊午", "", "辛未", "癸未", "乙未", "丁未", "己未", "", "壬申", "甲申", "丙申", "戊申", "庚申", "", "癸酉", "乙酉", "丁酉", "己酉", "辛酉", "", "甲戌", "丙戌", "戊戌", "庚戌", "壬戌", "", "乙亥", "丁亥", "己亥", "辛亥", "癸亥" };
+
+            double MajorDivisionsCount_tgdz = 72;
+            double MaxValue_tgdz = 72;
+            double ScaleLabelRadius = Ellipse005.ActualWidth / 2 + 15;
+            double ScaleLabelRadius_1 = Ellipse005.ActualWidth / 2 + 14;
+            double ScaleLabelRadius_2 = ScaleLabelRadius_1 + 20;
+
+            //刻度角度
+            Double majorTickUnitAngle_tgdz = ScaleSweepAngle / MajorDivisionsCount_tgdz;
+
+            //刻度单位值
+            Double majorTicksUnitValue_tgdz = (MaxValue_tgdz - MinValue) / MajorDivisionsCount_tgdz;
+            majorTicksUnitValue_tgdz = Math.Round(majorTicksUnitValue_tgdz, ScaleValuePrecision);
+            Double minvalue_tgdz = MinValue;
+            for (Double i = ScaleStartAngle_tmp; i <= (ScaleStartAngle_tmp + ScaleSweepAngle); i = i + majorTickUnitAngle_tgdz)
+            {
+                string text1 = "";
+                string text2 = "";
+                if (Math.Round(minvalue_tgdz, ScaleValuePrecision) <= Math.Round(MaxValue_tgdz, ScaleValuePrecision))
+                {
+                    minvalue_tgdz = Math.Round(minvalue_tgdz, ScaleValuePrecision);
+                    if (int.Parse((minvalue_tgdz).ToString()) < bg1.Length)
+                    {
+                        text1 = bg1[int.Parse((minvalue_tgdz).ToString())];
+                    }
+                    minvalue_tgdz = minvalue_tgdz + majorTicksUnitValue_tgdz;
+                }
+                else
+                {
+                    break;
+                }
+                double angle = i - (360 / 144) - 0.5;
+                TextBlock tb1 = DrawText(angle, ScaleLabelRadius_1, text1, Colors.LightGray, new Size(12, 30), 12);
+                tb1.TextWrapping = TextWrapping.Wrap;
+                rootGrid.Children.Add(tb1);
+
+                #region 刻度
+                Rectangle majortickrect = DrawRectangle(i, ScaleLabelRadius, Colors.LightGray, new Size(30, 1));
+                rootGrid.Children.Add(majortickrect);
+                #endregion
+            }
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 画刻度
+        /// </summary>
+        void DrawScale3()
+        {
+            double ScaleStartAngle = 90;
+            double ScaleSweepAngle = 360;
+            double MinValue = 0;
+            int ScaleValuePrecision = 0;
+
+            #region xxx
+            double ScaleStartAngle_tmp = 90 - (360 / 24); // 线的起始位置
+            string[] bg1 = new string[] { "子甲", "子丙", "子戊", "子庚", "子壬", "丑乙", "丑丁", "丑己", "丑辛", "丑癸", "寅丙", "寅戊", "寅庚", "寅壬", "寅甲", "卯丁", "卯己", "卯辛", "卯癸", "卯乙", "辰戊", "辰庚", "辰壬", "辰甲", "辰丙", "巳己", "巳辛", "巳癸", "巳乙", "巳丁", "午庚", "午壬", "午甲", "午丙", "午戊", "未辛", "未癸", "未乙", "未丁", "未己", "申壬", "申甲", "申丙", "申戊", "申庚", "酉癸", "酉乙", "酉丁", "酉己", "酉辛", "戌甲", "戌丙", "戌戊", "戌庚", "戌壬", "亥乙", "亥丁", "亥己", "亥辛", "亥癸" };
+            string[] bg2 = new string[] { "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七", "七三", " 正 ", "五五", " 正 ", "三七" };
+
+            double MajorDivisionsCount_tgdz = 60;
+            double MaxValue_tgdz = 60;
+            double ScaleLabelRadius = Ellipse009.ActualWidth / 2 + 20;
+            double ScaleLabelRadius_1 = Ellipse009.ActualWidth / 2 + 12;
+            double ScaleLabelRadius_2 = ScaleLabelRadius_1 + 20;
+
+            //刻度角度
+            Double majorTickUnitAngle_tgdz = ScaleSweepAngle / MajorDivisionsCount_tgdz;
+
+            //刻度单位值
+            Double majorTicksUnitValue_tgdz = (MaxValue_tgdz - MinValue) / MajorDivisionsCount_tgdz;
+            majorTicksUnitValue_tgdz = Math.Round(majorTicksUnitValue_tgdz, ScaleValuePrecision);
+            Double minvalue_tgdz = MinValue;
+            for (Double i = ScaleStartAngle_tmp; i <= (ScaleStartAngle_tmp + ScaleSweepAngle); i = i + majorTickUnitAngle_tgdz)
+            {
+                string text1 = "";
+                string text2 = "";
+                if (Math.Round(minvalue_tgdz, ScaleValuePrecision) <= Math.Round(MaxValue_tgdz, ScaleValuePrecision))
+                {
+                    minvalue_tgdz = Math.Round(minvalue_tgdz, ScaleValuePrecision);
+                    if (int.Parse((minvalue_tgdz).ToString()) < bg1.Length)
+                    {
+                        text1 = bg1[int.Parse((minvalue_tgdz).ToString())];
+                        text2 = bg2[int.Parse((minvalue_tgdz).ToString())];
+                    }
+                    minvalue_tgdz = minvalue_tgdz + majorTicksUnitValue_tgdz;
+                }
+                else
+                {
+                    break;
+                }
+                double angle = i + (360 / 120);
+                TextBlock tb1 = DrawText(angle, ScaleLabelRadius_1, text1, Colors.LightGray, new Size(40, 20), 12, true);
+                rootGrid.Children.Add(tb1);
+                TextBlock tb2 = DrawText(angle, ScaleLabelRadius_2, text2, Colors.LightGray, new Size(40, 20), 12);
+                rootGrid.Children.Add(tb2);
+
+                #region 刻度
+                Rectangle majortickrect = DrawRectangle(i, ScaleLabelRadius, Colors.LightGray, new Size(40, 1));
+                rootGrid.Children.Add(majortickrect);
+                #endregion
+            }
+
             #endregion
         }
         Grid DrawLine(double angle, double scaleLabelRadius, Color color, Size tickSize, bool isRotate = true)
