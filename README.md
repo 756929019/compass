@@ -2,7 +2,10 @@
 
 #### 介绍
 compass
-
+3D开场动画----动画有些卡顿
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0513/163313_5dddc47a_545745.png "屏幕截图.png")
+运行后效果
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0513/163456_e1f2a8aa_545745.png "微信截图_20200513163425.png")
 #### 软件架构
 软件架构说明
 
