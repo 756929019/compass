@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="1060" d:DesignWidth="1060" Loaded="UserControl_Loaded">
     <UserControl.Resources>
-        <Storyboard x:Key="Run" x:Name="xRun" Timeline.DesiredFrameRate="120">
+        <Storyboard x:Key="Run" x:Name="xRun" Timeline.DesiredFrameRate="60">
 
             <!--<DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="Ellipse8">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -34,6 +34,18 @@
             <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="taiji">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:15" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rootGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="360"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="360"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:10" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rootGrid2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:10" Value="360"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
@@ -140,7 +152,26 @@
                 </Ellipse.Effect>
             </Ellipse>
         </Grid>
-        <Grid Width="1060" Height="1060" x:Name="rootGrid"></Grid>
+        <Grid Width="1060" Height="1060" x:Name="rootGrid" Margin="0" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+        </Grid>
+        <Grid Width="1060" Height="1060" x:Name="rootGrid2" Margin="0" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+        </Grid>
         <Grid Width="1060" Height="1060" x:Name="ostentatiousGrid"  Margin="0" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>

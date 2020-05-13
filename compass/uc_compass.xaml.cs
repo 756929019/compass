@@ -383,11 +383,11 @@ namespace compass
                 double angle = i - (360 / 144) - 0.5;
                 TextBlock tb1 = DrawText(angle, ScaleLabelRadius_1, text1, Colors.LightGray, new Size(12, 30), 12);
                 tb1.TextWrapping = TextWrapping.Wrap;
-                rootGrid.Children.Add(tb1);
+                rootGrid2.Children.Add(tb1);
 
                 #region 刻度
                 Rectangle majortickrect = DrawRectangle(i, ScaleLabelRadius, Colors.LightGray, new Size(30, 1));
-                rootGrid.Children.Add(majortickrect);
+                rootGrid2.Children.Add(majortickrect);
                 #endregion
             }
 
@@ -442,13 +442,13 @@ namespace compass
                 }
                 double angle = i + (360 / 120);
                 TextBlock tb1 = DrawText(angle, ScaleLabelRadius_1, text1, Colors.LightGray, new Size(40, 20), 12, true);
-                rootGrid.Children.Add(tb1);
+                rootGrid2.Children.Add(tb1);
                 TextBlock tb2 = DrawText(angle, ScaleLabelRadius_2, text2, Colors.LightGray, new Size(40, 20), 12);
-                rootGrid.Children.Add(tb2);
+                rootGrid2.Children.Add(tb2);
 
                 #region 刻度
                 Rectangle majortickrect = DrawRectangle(i, ScaleLabelRadius, Colors.LightGray, new Size(40, 1));
-                rootGrid.Children.Add(majortickrect);
+                rootGrid2.Children.Add(majortickrect);
                 #endregion
             }
 
